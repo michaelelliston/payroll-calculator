@@ -9,12 +9,12 @@ public class Main {
         String name = myScanner.nextLine();
 
         System.out.println("Enter the number of hours you've worked:");
-        String inputOne = myScanner.nextLine();
-        float hoursWorked = Float.parseFloat(inputOne);
+        String input = myScanner.nextLine();
+        float hoursWorked = Float.parseFloat(input);
 
         System.out.println("Enter your pay rate:");
-        String inputTwo = myScanner.nextLine();
-        float payRate = Float.parseFloat(inputTwo);
+        input = myScanner.nextLine();
+        float payRate = Float.parseFloat(input);
 
         float grossPay = hoursWorked * payRate;
         if (hoursWorked > 40) {
