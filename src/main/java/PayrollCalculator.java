@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class PayrollCalculator {
@@ -6,8 +7,9 @@ public class PayrollCalculator {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Would you rather write the data into a csv or json?");
         String fileType = myScanner.nextLine();
+        LocalDate currentDate = LocalDate.now();
 
-        try (FileWriter writer = new FileWriter("src/main/resources/payroll." + fileType)){
+        try (FileWriter writer = new FileWriter("src/main/resources/payroll-" + currentDate + "." + fileType)){
             FileReader fileReader = new FileReader("src/main/resources/employees.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
