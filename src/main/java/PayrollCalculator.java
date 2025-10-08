@@ -1,12 +1,9 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class PayrollCalculator {
     public static void main(String[] args) {
 
-        try {
+        try (FileWriter writer = new FileWriter("src/main/resources/payroll.csv")){
             FileReader fileReader = new FileReader("src/main/resources/employees.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -23,7 +20,8 @@ public class PayrollCalculator {
 
                 Employee employee = new Employee(id, name, hoursWorked, payRate);
 
-                System.out.printf("Employee with an ID of \"%d\" named %s made $%.2f\n", employee.getId(), employee.getName(), employee.calculateGrossPay());
+                System.out.println("Employee with an ID of " + employee.getId() + " named " + employee.getName() + " made " + employee.calculateGrossPay());
+                writer.write("Employee with an ID of " + employee.getId() + " named " + employee.getName() + " made " + employee.calculateGrossPay() + "\n");
             }
 
 
