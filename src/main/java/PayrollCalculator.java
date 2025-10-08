@@ -1,13 +1,18 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class PayrollCalculator {
     public static void main(String[] args) {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Would you rather write the data into a csv or json?");
+        String fileType = myScanner.nextLine();
 
-        try (FileWriter writer = new FileWriter("src/main/resources/payroll.csv")){
+        try (FileWriter writer = new FileWriter("src/main/resources/payroll." + fileType)){
             FileReader fileReader = new FileReader("src/main/resources/employees.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             bufferedReader.readLine(); // Read the header
+            writer.write("id|name|gross pay\n");
 
             String input;              // Declare variable, then read the rest of the file
             while((input = bufferedReader.readLine()) != null) {
@@ -21,7 +26,7 @@ public class PayrollCalculator {
                 Employee employee = new Employee(id, name, hoursWorked, payRate);
 
                 System.out.println("Employee with an ID of " + employee.getId() + " named " + employee.getName() + " made " + employee.calculateGrossPay());
-                writer.write("Employee with an ID of " + employee.getId() + " named " + employee.getName() + " made " + employee.calculateGrossPay() + "\n");
+                writer.write(employee.getId() + "|" + employee.getName() + "|" + employee.calculateGrossPay() + "\n");
             }
 
 
